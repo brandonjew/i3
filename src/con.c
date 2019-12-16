@@ -1022,13 +1022,14 @@ static void con_set_fullscreen_mode(Con *con, fullscreen_mode_t fullscreen_mode)
 
     /* Send an ipc window "fullscreen_mode" event */
     ipc_send_window_event("fullscreen_mode", con);
-
+    /* Will never alter _NET_WM_STATE_FULLSCREEN. Prevents applications like
+     * Chrome from altering behavior when fullscreen. */
+    return;
     /* update _NET_WM_STATE if this container has a window */
     /* TODO: when a window is assigned to a container which is already
      * fullscreened, this state needs to be pushed to the client, too */
-    if (con->window == NULL)
+    /*if (con->window == NULL)
         return;
-    return;
     if (con->fullscreen_mode != CF_NONE) {
         DLOG("Setting _NET_WM_STATE_FULLSCREEN for con = %p / window = %d.\n", con, con->window->id);
         xcb_add_property_atom(conn, con->window->id, A__NET_WM_STATE, A__NET_WM_STATE_FULLSCREEN);
@@ -1036,6 +1037,7 @@ static void con_set_fullscreen_mode(Con *con, fullscreen_mode_t fullscreen_mode)
         DLOG("Removing _NET_WM_STATE_FULLSCREEN for con = %p / window = %d.\n", con, con->window->id);
         xcb_remove_property_atom(conn, con->window->id, A__NET_WM_STATE, A__NET_WM_STATE_FULLSCREEN);
     }
+    */
 }
 
 /*

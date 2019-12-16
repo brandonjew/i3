@@ -5,6 +5,8 @@
 
 # i3-gaps
 
+This fork of i3-gaps with rounded corners prevents applications from recieving a fullscreen request from i3. This will just maximize an application without changes in behavior, such as navigation bar removal in Google Chrome. 
+
 ## What is i3-gaps?
 
 i3-gaps is a fork of [i3wm](https://www.i3wm.org), a tiling window manager for X11. It is kept up to date with upstream, adding a few additional features such as gaps between windows (see below for a complete list).
